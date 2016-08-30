@@ -7,18 +7,45 @@ function searchKeyword() {
 		dataType : "json",
 		data: {keyword:keyword},
 		success: function(data) {
+
 			var innerHTML = "";
 
 			for(var i=0; i<data.rows.length; i++) {
-				innerHTML += "<a>";				
-				innerHTML += data.rows[i][3];
-				innerHTML += "</a> <br>";
+				var oneItem = data.rows[i];
+
+				innerHTML += "<li class='article show' id=<%=" + oneItem[0] + "%>";
+				innerHTML += "<p class='q' onclick='searchSummaryResult(" + oneItem[0] + ")'" + "><a>Q: " + oneItem[3] + "</a></p>";
+				innerHTML += "<p class='a' style='display: none;' ><div id = 'summary" + oneItem[0] + "'></div></p></li>";
+
 			}
 
-			search_result.innerHTML = innerHTML;
+			search_keyword_result.innerHTML = innerHTML;
 		},
 		error: function(data) {
-			alert("키워드 등록에 실패하였습니다.")
+		}
+	});
+}
+
+function searchSummaryResult(seq) {
+		$.ajax({
+		url: "/searchSummaryResult",
+		type: "post",
+		dataType : "json",
+		data: {seq:seq},
+		success: function(data) {
+
+			var innerHTML = "";
+			var summary = window['summary'+seq];
+
+			for(var i=0; i<data.rows.length; i++) {
+				var oneItem = data.rows[i];
+
+				innerHTML += "<p> "+oneItem[2]+" </p>";
+
+			}
+			summary.innerHTML = innerHTML;
+		},
+		error: function(data) {
 		}
 	});
 }

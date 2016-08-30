@@ -29,6 +29,11 @@ def main():
 	else: # 세션 실패
 		return render_template("main.html")
 
+# 키워드 검색 page
+@app.route('/search_keyword')
+def searchKeyword():
+	return render_template("search_keyword.html")		
+
 # 키워드 등록 page
 @app.route('/register_keyword')
 def registerKeyword():
@@ -176,8 +181,6 @@ def search():
 
 	keyword = request.form.get("keyword")
 
-	print(keyword)
-
 	cur = db.cursor()
 
 	cur.execute("SELECT * FROM crawling_news WHERE content LIKE '%" + keyword + "%'")
@@ -188,6 +191,20 @@ def search():
 
 	return jsonify({"status": "success", "rows" : rows})
 
+@app.route('/searchSummaryResult', methods=['POST'])
+def searchSummaryResult():
+
+	seq = request.form.get("seq")
+
+	cur = db.cursor()
+
+	cur.execute("SELECT * FROM sum_rank WHERE document_seq = %s" %(seq))
+	rows = cur.fetchall()
+	for i in rows :
+		print(i)
+
+	return jsonify({"status": "success", "rows" : rows})
+
 if __name__ == "__main__": 
-	# app.run(debug=True)
-	app.run(host="0.0.0.0", port=5000)
+	app.run(debug=True)
+	# app.run(host="0.0.0.0", port=5000)
