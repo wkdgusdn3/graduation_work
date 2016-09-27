@@ -14,3 +14,18 @@ $(document).ready( function () {
         break;
     }
 });
+
+function summaryNews(content) {
+    $.ajax({
+        url: "/summaryUserNews",
+        type: "post",
+        dataType : "json",
+        data: {content:content},
+        success: function(data) {
+            var innerHTML = data.summaryNews;
+            alert(innerHTML);
+        },
+        error: function(data) {
+        }
+    });
+}

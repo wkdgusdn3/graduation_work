@@ -8,11 +8,15 @@
 	<div class="container">
 		{% include "header.html" %}
 
-		<div class="main-div">
-			<div class="navb-search">
-				<div style="margin-left:10px;">
-				</div>
+		<div class="news-input-div">
+			<div>
+				<textarea id="input" rows="10" class="form-control navb-search-input" placeholder="" type="text">뉴스를 넣어주세요.</textarea>
+				<br>
+				<button type="button" class="btn btn-default" onclick="summaryNews(input.value)">요약</button>
 			</div>
+		</div>
+		<hr/>
+		<div class="news-summary-div">
 		</div>
 	</div>
 </div>

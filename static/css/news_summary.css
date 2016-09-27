@@ -82,3 +82,57 @@
   margin-right: 300px;
   text-align: center;
 }
+
+.news-input-div {
+  margin-top: 50px;
+  margin-left: 50px;
+  margin-right: 50px;
+  text-align: center;
+}
+
+.news-summary-div {
+  margin-top: 50px;
+  margin-left: 50px;
+  margin-right: 50px;
+  text-align: center;
+}
+
+
+@charset "utf-8";
+/* search_keyword */
+.search_keyword{border-bottom:1px solid #ddd;margin:1em 0}
+.search_keyword .search_keywordHeader{position:relative;zoom:1}
+.search_keyword .search_keywordHeader .showAll{position:absolute;bottom:0;right:0;border:0;padding:0;overflow:visible;background:none;cursor:pointer}
+.search_keyword .search_keywordBody{margin:0;padding:0}
+.search_keyword .search_keywordBody .article{list-style:none}
+.search_keyword .q{margin:0;border-top:1px solid #ddd}
+.search_keyword .q a{display:block;padding:.5em 1em;text-align:left;font-weight:bold;background:#fafafa;color:#000;text-decoration:none !important}
+.search_keyword .q a:hover, .search_keyword .q a:active, .search_keyword .q a:focus{background:#f8f8f8}
+.search_keyword .a{margin:0;padding:1em;line-height:1.5}
+
+.qna_state{display:inline-block;width:47px;height:20px;margin:-3px 6px 0 0;border:1px solid #afb5c1;background:#fff;text-align:center;letter-spacing:-1px;font-size:11px;line-height:1.5;color:#677791;;vertical-align:middle;}
+
+table.prdc_bbs{position:relative;border-collapse:collapse;width:100%;border-top:1px solid #656565;border-bottom:1px solid #c8c8c8;}
+table.prdc_bbs th{height:24px;padding:11px 0 0;background:#f8f8f8;color:#333;font-weight:normal;vertical-align:top;}
+table.prdc_bbs td{padding:14px 0 11px 0;border-top:1px solid #e2e2e2;}
+table.prdc_bbs td.td_write{font-size:11px;color:#666666;}
+table.prdc_bbs td.td_write div{text-align:left;width:100px;margin:0 auto;}
+table.prdc_bbs td.td_write span.write{display:block;font-size:12px;font-family:tahoma,dotum;}
+table.prdc_bbs td.td_write span.date{display:block;font-family:tahoma,dotum;}
+table.prdc_bbs td.td_write span.criticize{display:block;margin-top:2px;}
+table.prdc_bbs td.td_nothing{text-align:center;color:#666}
+table.prdc_bbs td.td_op_nothing{padding:20px 0 16px;text-align:center;color:#666}
+table.prdc_bbs td.td_op_nothing strong{display:inline-block;color:#4d4d4d;margin-bottom:2px;}
+table.prdc_bbs .bbs_tit{display:block;margin-top:4px;}
+table.prdc_bbs .bbs_content {color:#333}
+table.prdc_bbs .bbs_content a{display:inline-block;margin-top:7px;color:#333}
+table.prdc_bbs .option_txt{display:block;margin-top:4px;font-size:11px;color:#4e6cce}
+table.prdc_bbs .link_arr_txt{color:#4d4d4d !important;margin-bottom:3px;line-height:1.2;padding:0 7px 0 0px;background:url('/img/default/btn/arr.gif') no-repeat 100% -1px;*background-position:100% 0px;}
+table.prdc_bbs .option_txt .link_arr_txt{padding-left:8px;}
+table.prdc_bbs .opt_li {display:block;}
+table.prdc_bbs .opt_li .option_txt{display:inline !important;}
+table.prdc_bbs .opt_li .link_arr_txt{display:inline-block !important;}
+table.prdc_bbs .seller_reple {display:block;margin:6px 0 -2px 5px;padding:2px 0 0 70px;vertical-align:middle;color:#6a7690;font-size:11px;line-height:1.3;font-family:'tahoma','dotum','돋움';*font-family:'dotum','돋움';letter-spacing:0px;background:url('/img/prdc/icon_buyseller.gif') no-repeat 0 0;}
+table.prdc_bbs .seller_reple em {padding-left:5px;}
+table.prdc_bbs .ico_custom{margin-top:-2px;}
+.trQna{background:#f8f8f8}
