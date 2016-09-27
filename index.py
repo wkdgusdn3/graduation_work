@@ -10,7 +10,7 @@ import math
 import nltk
 import codecs
 import operator
-from konlpy.tag import Twitter; t=Twitter()
+from konlpy.tag import Twitter
 
 app = Flask(__name__)
 app.secret_key = urandom(16)
@@ -22,6 +22,8 @@ password="djwkdwh"
 name="summary_news"
 
 db = pymysql.connect(host, id, password, name, port, charset="utf8")
+cur = db.cursor()
+t=Twitter()
 
 # default route
 @app.route('/')
@@ -77,26 +79,22 @@ def searchSummaryResult():
 	return jsonify({"status": "success", "rows" : rows})
 
 
-def summary(content) :
-
-	print(1)
+@app.route('/summaryUserNews', methods=['POST'])
+def summaryUserNews() :
+	content = request.form.get("content")
+	
 	try :
-		tokens_ko = t.morphs(content)
-		ko = nltk.Text(tokens_ko, name=content)
-		word_counter = ko.vocab()
+	    tokens_ko = t.morphs(content)
+	    ko = nltk.Text(tokens_ko, name=content)
+	    word_counter = ko.vocab()
 	except :
-		print("error")
-
-	print(2)
+	    print("error")
 
 	keyword = {}
 
 	for key, value in word_counter.items() :
 	    if len(bytes(key, 'utf-8')) > 5 :
 	        keyword[key] = value
-
-
-	# In[50]:
 
 	class TFIDF :
 	    keyword = None
@@ -118,17 +116,11 @@ def summary(content) :
 	    
 	    return result[0][0]
 
-
-	# In[51]:
-
 	def calTF(count, totalCount) :
 	    return count/totalCount
 
 	def calIDF(keyword) :
 	    return math.log(totalDocumentCount/count[keyword])
-
-
-	# In[52]:
 
 	totalDocumentCount = getTotalDocumentCount()
 
@@ -137,9 +129,6 @@ def summary(content) :
 	count = {}
 	for a in result :
 	    count[pymysql.escape_string(a[0]).upper()] = a[1]
-
-
-	# In[53]:
 
 	totalKeywordCount = 0
 	tfidfList = []
@@ -154,14 +143,8 @@ def summary(content) :
 	    tfidf.tfidf = tfidf.tf * tfidf.idf
 	    tfidfList.append(tfidf)
 
-
-	# In[59]:
-
 	tfidfList.sort(key=operator.attrgetter('tfidf'))
 	tfidfList.reverse()
-
-
-	# In[60]:
 
 	sentences = [(i+'다.').strip() for i in content.split('다.') if i is not '']
 	sentenceRankList = []
@@ -182,42 +165,21 @@ def summary(content) :
 	    sentenceRank.count = count_temp
 	    sentenceRankList.append(sentenceRank)
 	        
-	#     print('%s\t%s\t%s\t%s\n' %(str(count),pymysql.escape_string(sentence),str(sum_temp),str(count_temp)))
 	    count += 1
 
-
-	# In[61]:
-
 	sentenceRankList.sort(key=operator.attrgetter('count'))
-	for temp in sentenceRankList :
-	    print(str(temp.count) + " " + str(temp.sentence_seq))
 	sentenceRankList.reverse()
 	sentenceRankList = sentenceRankList[:3]
 	sentenceRankList.sort(key=operator.attrgetter('sentence_seq'))
 
-
-	# In[63]:
-
 	summary = ''
 	for temp in sentenceRankList :
-	    summary += temp.sentence
+	    summary += temp.sentence + "<br><br>"
 
-	return summary
+	print(summary)
 
-
-@app.route('/summaryUserNews', methods=['POST'])
-def summaryUserNews() :
-	content = request.form.get("content")
-	print(content)
-
-	# os.system("news_summary.py %s" %(content))
-	# summaryNews = subprocess.check_output('news_summary.py ' + content, shell=False)
-	# summaryNews = subprocess.check_output('news_summary.py', shell=False)
-	# print(summaryNews)
-	summary(content)
-
-	return jsonify({"summaryNews" : summaryNews['summary']})
+	return jsonify({"summaryNews" : summary})
 
 if __name__ == "__main__": 
-	app.run(debug=True)
-	# app.run(host="0.0.0.0", port=5000)
+	# app.run(debug=True)
+	app.run()

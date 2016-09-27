@@ -23,7 +23,9 @@ function summaryNews(content) {
         data: {content:content},
         success: function(data) {
             var innerHTML = data.summaryNews;
-            alert(innerHTML);
+
+            summary_result.innerHTML = "";
+            summary_result.innerHTML = innerHTML;
         },
         error: function(data) {
         }
