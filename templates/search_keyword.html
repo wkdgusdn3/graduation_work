@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	{% include "head.html" %}
+	<script src="static/javascript/register_keyword.js"></script>
+</head>
+
+<body>
+	<div class="container">
+		{% include "header.html" %}
+
+		<div class="main-div">
+			<div class="navb-search">
+				<div style="margin-left:10px;"><input id="keyword" autocomplete="off" class="form-control navb-search-input" placeholder="" type="text" />
+					<br>
+					<button type="button" class="btn btn-default" onclick="searchKeyword()">검색</button>
+				</div>
+			</div>
+		</div>
+		<div class="search_keyword">
+			<ul class="search_keywordBody">
+				<div id="search_keyword_result">
+				</div>
+			</ul>
+		</div>
+		<!-- <div id="search_result">
+	</div> -->
+</div> <!-- /container -->
+</body>
+
+</html>
