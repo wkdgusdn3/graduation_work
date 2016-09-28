@@ -6,10 +6,10 @@ $(document).ready( function () {
         case "/main" :
         $("li[name='menuBar'][value='0']").addClass('active');
         break;
-        case "/news_search" :
+        case "/search" :
         $("li[name='menuBar'][value='1']").addClass('active');
         break;
-        case "/news_summary" :
+        case "/summary" :
         $("li[name='menuBar'][value='2']").addClass('active');
         break;
     }

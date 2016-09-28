@@ -10,6 +10,12 @@ function summaryNews(content) {
             summary_result.innerHTML = "";
             summary_result.innerHTML = innerHTML;
         },
+        beforeSend: function(){
+            $('.wrap-loading').removeClass('display-none');
+        },
+        complete: function(){
+            $('.wrap-loading').addClass('display-none');
+        },
         error: function(data) {
         }
     });

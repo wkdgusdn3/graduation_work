@@ -52,7 +52,7 @@ function searchSummaryResult(seq) {
 			}
 			summary.innerHTML = innerHTML;
 		},
-				beforeSend: function(){
+		beforeSend: function(){
 			$('.wrap-loading').removeClass('display-none');
 		},
 		complete: function(){
