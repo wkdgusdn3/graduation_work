@@ -135,3 +135,23 @@ table.prdc_bbs .seller_reple {display:block;margin:6px 0 -2px 5px;padding:2px 0 
 table.prdc_bbs .seller_reple em {padding-left:5px;}
 table.prdc_bbs .ico_custom{margin-top:-2px;}
 .trQna{background:#f8f8f8}
+
+.wrap-loading{ /*화면 전체를 어둡게 합니다.*/
+  position: fixed;
+  left:0;
+  right:0;
+  top:0;
+  bottom:0;
+  background: rgba(0,0,0,0); /*not in ie */
+  filter: progid:DXImageTransform.Microsoft.Gradient(startColorstr='#20000000', endColorstr='#20000000');    /* ie */
+}
+.wrap-loading div{ /*로딩 이미지*/
+  position: fixed;
+  top:50%;
+  left:50%;
+  margin-left: -50px;
+  margin-top: -50px;
+}
+.display-none{ /*감추기*/
+  display:none;
+}
