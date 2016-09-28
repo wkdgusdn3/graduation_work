@@ -1,8 +1,8 @@
-function searchKeyword() {
+function searchNews() {
 	var keyword =  $("#keyword").val();
 
 	$.ajax({
-		url: "/search",
+		url: "/searchNews",
 		type: "post",
 		dataType : "json",
 		data: {keyword:keyword},

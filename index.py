@@ -40,17 +40,17 @@ def main():
 		return render_template("main.html")
 
 # 뉴스 검색 page
-@app.route('/news_search')
-def searchNews():
-	return render_template("news_search.html")		
+@app.route('/search')
+def search():
+	return render_template("search.html")		
 
 # 뉴스 요약 page
-@app.route('/news_summary')
-def summaryNews():
-	return render_template("news_summary.html")		
+@app.route('/summary')
+def summary():
+	return render_template("summary.html")		
 
-@app.route('/search', methods=['POST'])
-def search():
+@app.route('/searchNews', methods=['POST'])
+def searchNews():
 
 	keyword = request.form.get("keyword")
 
@@ -80,7 +80,7 @@ def searchSummaryResult():
 
 
 @app.route('/summaryUserNews', methods=['POST'])
-def summaryUserNews() :
+def summaryNews() :
 	content = request.form.get("content")
 	
 	try :
