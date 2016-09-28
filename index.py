@@ -143,7 +143,7 @@ def summaryNews() :
 		    tfidf.idf = calIDF(key)
 		    tfidf.tfidf = tfidf.tf * tfidf.idf
 		    tfidfList.append(tfidf)
-		except Exception ase:
+		except Exception as e:
 			print(str(e))
 
 	tfidfList.sort(key=operator.attrgetter('tfidf'))
