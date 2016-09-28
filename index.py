@@ -136,12 +136,15 @@ def summaryNews() :
 	    totalKeywordCount += value
 
 	for key, value in keyword.items() :
-	    tfidf = TFIDF()
-	    tfidf.keyword = pymysql.escape_string(key)
-	    tfidf.tf = calTF(value, totalKeywordCount)
-	    tfidf.idf = calIDF(key)
-	    tfidf.tfidf = tfidf.tf * tfidf.idf
-	    tfidfList.append(tfidf)
+		try :
+		    tfidf = TFIDF()
+		    tfidf.keyword = pymysql.escape_string(key)
+		    tfidf.tf = calTF(value, totalKeywordCount)
+		    tfidf.idf = calIDF(key)
+		    tfidf.tfidf = tfidf.tf * tfidf.idf
+		    tfidfList.append(tfidf)
+		except Exception ase:
+			print(str(e))
 
 	tfidfList.sort(key=operator.attrgetter('tfidf'))
 	tfidfList.reverse()
