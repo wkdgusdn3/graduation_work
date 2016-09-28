@@ -7,7 +7,6 @@ function searchKeyword() {
 		dataType : "json",
 		data: {keyword:keyword},
 		success: function(data) {
-
 			var innerHTML = "";
 
 			for(var i=0; i<data.rows.length; i++) {
@@ -23,12 +22,19 @@ function searchKeyword() {
 
 			search_keyword_result.innerHTML = innerHTML;
 		},
+		beforeSend: function(){
+			$('.wrap-loading').removeClass('display-none');
+		},
+		complete: function(){
+			$('.wrap-loading').addClass('display-none');
+		},
 		error: function(data) {
 		}
 	});
 }
 
 function searchSummaryResult(seq) {
+
 		$.ajax({
 		url: "/searchSummaryResult",
 		type: "post",
@@ -38,7 +44,6 @@ function searchSummaryResult(seq) {
 
 			var innerHTML = "";
 			var summary = window['summary'+seq];
-
 			for(var i=0; i<data.rows.length; i++) {
 				var oneItem = data.rows[i];
 
@@ -46,6 +51,12 @@ function searchSummaryResult(seq) {
 
 			}
 			summary.innerHTML = innerHTML;
+		},
+				beforeSend: function(){
+			$('.wrap-loading').removeClass('display-none');
+		},
+		complete: function(){
+			$('.wrap-loading').addClass('display-none');
 		},
 		error: function(data) {
 		}

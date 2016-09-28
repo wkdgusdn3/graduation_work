@@ -59,8 +59,8 @@ def search():
 	cur.execute("SELECT * FROM crawling_news_new WHERE content LIKE '%" + keyword + "%'")
 	rows = cur.fetchall()
 
-	for i in rows :
-		print(i[0])
+	# for i in rows :
+	# 	print(i[0])
 
 	return jsonify({"status": "success", "rows" : rows})
 
@@ -73,8 +73,8 @@ def searchSummaryResult():
 
 	cur.execute("SELECT * FROM (SELECT * FROM sentence_rank_5 WHERE document_seq = %s ORDER BY count LIMIT 0, 3) AS subQuery ORDER BY sentence_seq" %(seq))
 	rows = cur.fetchall()
-	for i in rows :
-		print(i)
+	# for i in rows :
+	# 	print(i)
 
 	return jsonify({"status": "success", "rows" : rows})
 
@@ -176,7 +176,7 @@ def summaryUserNews() :
 	for temp in sentenceRankList :
 	    summary += temp.sentence + "<br><br>"
 
-	print(summary)
+	# print(summary)
 
 	return jsonify({"summaryNews" : summary})
 

@@ -2,9 +2,13 @@
 <html>
 <head>
 	{% include "head.html" %}
+	<script src="static/javascript/news_search.js"></script>
 </head>
 
 <body>
+	<div class="wrap-loading display-none">
+		<div><img src="http://www.sendengo.com/static/iship/images/loading/loading-circle.gif" width="100px" height="100px" /></div>
+	</div>
 	<div class="container">
 		{% include "header.html" %}
 
@@ -24,7 +28,30 @@
 			</ul>
 		</div>
 	</div>
-</div>
+
 </body>
 
 </html>
+
+<style type="text/css" >
+	.wrap-loading{ /*화면 전체를 어둡게 합니다.*/
+		position: fixed;
+		left:0;
+		right:0;
+		top:0;
+		bottom:0;
+		background: rgba(0,0,0,0); /*not in ie */
+		filter: progid:DXImageTransform.Microsoft.Gradient(startColorstr='#20000000', endColorstr='#20000000');    /* ie */
+	}
+	.wrap-loading div{ /*로딩 이미지*/
+		position: fixed;
+		top:50%;
+		left:50%;
+		margin-left: -50px;
+		margin-top: -50px;
+	}
+	.display-none{ /*감추기*/
+		display:none;
+	}
+
+</style>
