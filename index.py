@@ -56,7 +56,7 @@ def searchNews():
 
 	cur = db.cursor()
 
-	cur.execute("SELECT * FROM crawling_news_new WHERE content LIKE '%" + keyword + "%'")
+	cur.execute("SELECT * FROM crawling_news_new WHERE title LIKE '%" + keyword + "%'")
 	rows = cur.fetchall()
 
 	# for i in rows :
