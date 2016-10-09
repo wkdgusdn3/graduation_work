@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from flask import Flask, url_for, render_template, request, session, jsonify, redirect
+from flask import *
 from os import urandom
 import pymysql, os
 import sys
@@ -21,8 +21,14 @@ port = 7778
 password="djwkdwh"
 name="summary_news"
 
-db = pymysql.connect(host, id, password, name, port, charset="utf8")
-cur = db.cursor()
+@app.before_request
+def before_request():
+	g.db = pymysql.connect(host, id, password, name, port, charset="utf8")
+
+@app.teardown_request
+def teardown_request(exception):
+	g.db.close()
+
 t=Twitter()
 
 # default route
@@ -54,7 +60,7 @@ def searchNews():
 
 	keyword = request.form.get("keyword")
 
-	cur = db.cursor()
+	cur = g.db.cursor()
 
 	cur.execute("SELECT * FROM crawling_news_new WHERE title LIKE '%" + keyword + "%'")
 	rows = cur.fetchall()
@@ -69,7 +75,7 @@ def searchSummaryResult():
 
 	seq = request.form.get("seq")
 
-	cur = db.cursor()
+	cur = g.db.cursor()
 
 	cur.execute("SELECT * FROM (SELECT * FROM sentence_rank_5 WHERE document_seq = %s ORDER BY count LIMIT 0, 3) AS subQuery ORDER BY sentence_seq" %(seq))
 	rows = cur.fetchall()
