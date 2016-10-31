@@ -87,6 +87,7 @@ def searchSummaryResult():
 
 @app.route('/summaryUserNews', methods=['POST'])
 def summaryNews() :
+	cur = g.db.cursor()
 	content = request.form.get("content")
 	
 	try :
