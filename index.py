@@ -208,12 +208,14 @@ def summaryNewsWithUrl() :
 	r = requests.get(url)
 	r.encoding = "euc-kr"
 	html = r.text
-	soup = BeautifulSoup(html, 'lxml')
+	soup = BeautifulSoup(html.replace('<br>','br_text'), 'lxml')
 
 	# 기사 내용 get
 	content = "";
 	for i in soup.select(".par") :
-		content += i.text
+		print(i)
+		print()
+		content += i.text.replace('br_text','<br>')
 
 	try :
 		tokens_ko = t.morphs(content)
