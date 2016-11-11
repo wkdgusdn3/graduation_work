@@ -12,5 +12,8 @@ $(document).ready( function () {
         case "/summary" :
         $("li[name='menuBar'][value='2']").addClass('active');
         break;
+        case "/summarywithurl" :
+        $("li[name='menuBar'][value='3']").addClass('active');
+        break;
     }
 });

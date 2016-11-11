@@ -2,7 +2,7 @@
 <html>
 <head>
 	{% include "head.html" %}
-	<script src="static/javascript/summary.js"></script>
+	<script src="static/javascript/summary_with_url.js"></script>
 </head>
 
 <body>
@@ -15,14 +15,17 @@
 
 		<div class="news-input-div">
 			<div>
-				<h2><strong>뉴스를 넣어주세요.</strong></h2>
-				<textarea id="inputContent" rows="10" class="form-control navb-search-input" placeholder="" type="text"></textarea>
+				<h2><strong>URL을 넣어주세요.</strong></h2>
+				<input id="inputUrl" class="form-control navb-search-input" type="text">
 				<br>
-				<button type="button" class="btn btn-default" onclick="summaryNews(inputContent.value)">요약</button>
+				<button type="button" class="btn btn-default" onclick="summaryNewsWithUrl(inputUrl.value)">요약</button>
 			</div>
 		</div>
 		<hr/>
-		<div class="news-summary-div" id="summary_result">
+		<div class="news-summary-div" id="content">
+		</div>
+		<hr>
+		<div class="news-summary-div" id="summaryContent">
 		</div>
 		<br><br><br><br><br>
 	</div>
