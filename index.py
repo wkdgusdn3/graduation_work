@@ -58,7 +58,6 @@ def summary():
 # url로 뉴스 요약 page
 @app.route('/summarywithurl')
 def summaryWithUrl():
-	print("asdf")
 	return render_template("summary_with_url.html")		
 
 @app.route('/searchNews', methods=['POST'])
@@ -70,9 +69,6 @@ def searchNews():
 
 	cur.execute("SELECT * FROM crawling_news_new WHERE title LIKE '%" + keyword + "%'")
 	rows = cur.fetchall()
-
-	# for i in rows :
-	# 	print(i[0])
 
 	return jsonify({"status": "success", "rows" : rows})
 
@@ -203,8 +199,6 @@ def summaryNewsWithUrl() :
 	t = Twitter()
 	url = request.form.get("url")
 
-	print(url)
-
 	r = requests.get(url)
 	r.encoding = "euc-kr"
 	html = r.text
@@ -213,8 +207,6 @@ def summaryNewsWithUrl() :
 	# 기사 내용 get
 	content = "";
 	for i in soup.select(".par") :
-		print(i)
-		print()
 		content += i.text.replace('br_text','<br>')
 
 	try :
