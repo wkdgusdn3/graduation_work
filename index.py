@@ -21,7 +21,7 @@ host = "128.134.54.31"
 id = "ejj"
 port = 7778
 password="djwkdwh"
-name="summary_news_backup_161109"
+name="summary_news"
 
 @app.before_request
 def before_request():
@@ -67,7 +67,7 @@ def searchNews():
 
 	cur = g.db.cursor()
 
-	cur.execute("SELECT * FROM crawling_news_new WHERE title LIKE '%" + keyword + "%'")
+	cur.execute("SELECT * FROM crawling_news_new WHERE title LIKE '%" + keyword + "%' " + "ORDER BY date DESC")
 	rows = cur.fetchall()
 
 	return jsonify({"status": "success", "rows" : rows})
