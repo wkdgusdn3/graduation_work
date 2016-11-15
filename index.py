@@ -208,7 +208,6 @@ def summaryNewsWithUrl() :
 	content = "";
 	for i in soup.select(".par") :
 		content += i.text.replace('br_text','<br>')
-
 	try :
 		tokens_ko = t.morphs(content)
 		ko = nltk.Text(tokens_ko, name=content)
@@ -303,7 +302,7 @@ def summaryNewsWithUrl() :
 
 	summary = ''
 	for temp in sentenceRankList :
-		summary += temp.sentence + "<br><br>"
+		summary += temp.sentence.replace("<br>",'') + "<br><br>"
 	
 	return jsonify({"content" : content, "summaryContent" : summary})
 

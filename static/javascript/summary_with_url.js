@@ -7,6 +7,7 @@ function summaryNewsWithUrl(url) {
         success: function(data) {
             content.innerHTML = data.content;
             summaryContent.innerHTML = data.summaryContent;
+            showDiv();
         },
         beforeSend: function(){
             $('.wrap-loading').removeClass('display-none');
@@ -18,4 +19,8 @@ function summaryNewsWithUrl(url) {
             alert("error")
         }
     });
+}
+function showDiv() {
+   document.getElementById('content').style.display = "block";
+   document.getElementById('summaryContent').style.display = "block";
 }
